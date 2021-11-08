@@ -67,8 +67,41 @@ public class Xexun2ProtocolDecoder extends BaseProtocolDecoder {
         if (BitUtil.check(value, 0)) {
             return Position.ALARM_SOS;
         }
+        if (BitUtil.check(value,1)) {
+            return Position.ALARM_REMOVING;
+        }
+        if (BitUtil.check(value,4)) {
+            return Position.ALARM_CHARGING;
+        }
+        if (BitUtil.check(value,6)) {
+            return Position.ALARM_POWER_ON;
+        }
+        if (BitUtil.check(value, 9)) {
+            return Position.ALARM_DISCONNECT;
+        }
+        if (BitUtil.check(value, 10)) {
+            return Position.ALARM_CONNECTION;
+        }
+        if (BitUtil.check(value, 11)) {
+            return Position.ALARM_GRAVITY;
+        }
+        if (BitUtil.check(value, 12)) {
+            return Position.ALARM_MOVEMENT;
+        }
         if (BitUtil.check(value, 15)) {
             return Position.ALARM_FALL_DOWN;
+        }
+        if (BitUtil.check(value, 19 )) {
+            return Position.ALARM_OFFLINE;
+        }
+        if (BitUtil.check(value, 20 )) {
+            return Position.ALARM_OVER_DISTANCE;
+        }
+        if (BitUtil.check(value, 21 )) {
+            return Position.ALARM_COORDINATES_OUT_OF_BOUNDS;
+        }
+        if (BitUtil.check(value, 22 )) {
+            return Position.ALARM_POWER_OFF;
         }
         return null;
     }
