@@ -148,7 +148,6 @@ public class Position extends Message {
     public static final String ALARM_CHARGING = "charging";
     public static final String ALARM_GRAVITY = "gravitySwitch";
     public static final String ALARM_COORDINATES_OUT_OF_BOUNDS = "coordinatesOutOfBounds";
-    public static final String ALARM_BASESTATION_TAMPERING = "baseStationForAnkleMonitorIsBeingMoved";
     public Position() {
     }
 
