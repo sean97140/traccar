@@ -141,7 +141,13 @@ public class Position extends Message {
     public static final String ALARM_FUEL_LEAK = "fuelLeak";
     public static final String ALARM_TAMPERING = "tampering";
     public static final String ALARM_REMOVING = "removing";
-
+    public static final String ALARM_DISCONNECT = "disconnect";
+    public static final String ALARM_CONNECTION = "connection";
+    public static final String ALARM_OFFLINE = "offline";
+    public static final String ALARM_OVER_DISTANCE = "overDistance";
+    public static final String ALARM_CHARGING = "charging";
+    public static final String ALARM_GRAVITY = "gravitySwitch";
+    public static final String ALARM_COORDINATES_OUT_OF_BOUNDS = "coordinatesOutOfBounds";
     public Position() {
     }
 
