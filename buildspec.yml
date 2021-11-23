@@ -21,9 +21,9 @@ env:
   #build-matrix:
   #build-graph:
 phases:
-  pre_build:
-    commands:
-      - git submodule update --init --recursive
+  #pre_build:
+    #commands:
+      
   #install:
   install:
     runtime-versions:
@@ -50,6 +50,7 @@ phases:
   build:
     commands:
        - ./gradlew assemble
+       - git submodule update --init --recursive
        - cd traccar-web
        - npm install
        - npm run build
