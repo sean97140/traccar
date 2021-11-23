@@ -1,6 +1,7 @@
 version: 0.2
 
-#env:
+env:
+  git-credential-helper: yes
   #variables:
      # key: "value"
      # key: "value"
@@ -20,6 +21,9 @@ version: 0.2
   #build-matrix:
   #build-graph:
 phases:
+  pre_build:
+    commands:
+      - git submodule update --init --recursive
   #install:
   install:
     runtime-versions:
