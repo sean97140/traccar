@@ -1,0 +1,74 @@
+version: 0.2
+
+#env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+  #secrets-manager:
+     # key: secret-id:json-key:version-stage:version-id
+     # key: secret-id:json-key:version-stage:version-id
+  #exported-variables:
+     # - variable
+     # - variable
+  #git-credential-helper: yes
+#batch:
+  #fast-fail: true
+  #build-list:
+  #build-matrix:
+  #build-graph:
+phases:
+  #install:
+  install:
+    runtime-versions:
+      nodejs: 14
+    commands:
+       - wget https://trials.sencha.com/cmd/7.4.0.39/no-jre/SenchaCmd-7.4.0.39-linux-64-no-jre.zip
+       - unzip SenchaCmd*
+       - ./SenchaCmd*.sh -q
+       - . ~/.bashrc
+       - apt-get update -y
+       - apt-get install -y makeself
+    #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
+    #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
+    #runtime-versions:
+      # name: version
+      # name: version
+    #commands:
+      # - command
+      # - command
+  #pre_build:
+    #commands:
+      # - command
+      # - command
+  build:
+    commands:
+       - ./gradlew assemble
+       - cd traccar-web
+       - npm install
+       - npm run build
+       - cd ../setup/
+       - wget https://github.com/ojdkbuild/contrib_jdk11u-ci/releases/download/jdk-11.0.13%2B8/jdk-11.0.13-ojdkbuild-linux-x64.zip
+       - ./package.sh 4.14 linux-64
+  #post_build:
+    #commands:
+#reports:
+  #report-name-or-arn:
+    #files:
+      # - location
+      # - location
+    #base-directory: location
+    #discard-paths: yes
+    #file-format: JunitXml | CucumberJson
+artifacts:
+  files:
+     - '*/traccar-linux-64-4.14.zip'
+    # - location
+  #name: $(date +%Y-%m-%d)
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - paths
