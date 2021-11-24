@@ -81,6 +81,8 @@ dependencies {
     implementation "com.sun.xml.bind:jaxb-core:3.0.2"
     implementation "com.sun.xml.bind:jaxb-impl:3.0.2"
     implementation "javax.activation:activation:1.1.1"
+    implementation 'com.amazonaws.secretsmanager:aws-secretsmanager-jdbc:1.0.6'
+    implementation 'com.amazonaws.secretsmanager:aws-secretsmanager-caching-java:1.0.1'
     implementation 'com.amazonaws:aws-java-sdk-sns:1.12.47'
     testImplementation "junit:junit:4.13.2"
 }
