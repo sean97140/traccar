@@ -3,3 +3,6 @@
 	url = https://github.com/sean97140/traccar-web.git
 	branch = master
 	ignore = all
+[submodule "traccar-docker"]
+	path = traccar-docker
+	url = https://github.com/sean97140/traccar-docker.git
