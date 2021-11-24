@@ -57,8 +57,8 @@ phases:
        - npm run build
        - cd ../setup/
        - wget https://github.com/ojdkbuild/contrib_jdk11u-ci/releases/download/jdk-11.0.13%2B8/jdk-11.0.13-ojdkbuild-linux-x64.zip
-       - ./package.sh 4.14 linux-64
-       - cp traccar-linux-64-4.14.zip ../traccar-docker/
+       - ./package.sh 4.14 other
+       - cp traccar*.zip ../traccar-docker/
        - cd ../traccar-docker/
        - echo Build started on `date`
        - echo Building the Docker image...          
