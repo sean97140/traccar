@@ -93,7 +93,7 @@ cache:
      - '~/.gradle/**/*'
      - 'target/**/*'
      - 'nbactions.xml' 
-     - '.gradle'
+     - '.gradle/**/*'
      - 'build/**/*'
      - 'src/main/java/org/traccar/protobuf/**/*'
      - 'SenchaCmd-7.4.0.39-linux-64-no-jre.zip'
