@@ -69,6 +69,7 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - gradle showMeCache
 #reports:
   #report-name-or-arn:
     #files:
@@ -79,11 +80,11 @@ phases:
     #file-format: JunitXml | CucumberJson
 artifacts:
   files:
-     - '*/traccar-linux-64-4.14.zip'
+     - '*/traccar-other-4.14.zip'
     # - location
   #name: $(date +%Y-%m-%d)
   #discard-paths: yes
   #base-directory: location
-#cache:
-  #paths:
-    # - paths
+cache:
+  paths:
+     - '~/.gradle/**/*'
