@@ -98,4 +98,3 @@ cache:
      - 'src/main/java/org/traccar/protobuf/**/*'
      - 'SenchaCmd-7.4.0.39-linux-64-no-jre.zip'
      - 'setup/jdk-11.0.13-ojdkbuild-linux-x64.zip'
-     - '/var/cache/apt/**/*'
