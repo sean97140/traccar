@@ -93,6 +93,7 @@ artifacts:
 cache:
   paths:
      - '~/.gradle/**/*'
+     - '~/.npm/**/*'     
      - 'target/**/*'
      - 'nbactions.xml' 
      - '.gradle/**/*'
