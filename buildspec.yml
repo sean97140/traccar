@@ -33,7 +33,7 @@ phases:
       nodejs: 14
     commands:
        #- if [ -d "SenchaCmd-7.4.0.39-linux-64-no-jre.zip" ]; then rm -Rf SenchaCmd-7.4.0.39-linux-64-no-jre.zip; fi
-       - wget -nc https://trials.sencha.com/cmd/7.4.0.39/no-jre/SenchaCmd-7.4.0.39-linux-64-no-jre.zip
+       - if [ ! -f SenchaCmd-7.4.0.39-linux-64-no-jre.zip ]; then wget https://trials.sencha.com/cmd/7.4.0.39/no-jre/SenchaCmd-7.4.0.39-linux-64-no-jre.zip; fi
        - unzip SenchaCmd*
        - ./SenchaCmd*.sh -q
        - . ~/.bashrc
@@ -60,7 +60,8 @@ phases:
        - cd ../setup/
        - aws s3 cp s3://traccar-conf-sean/traccar.xml .
        #- if [ -d "jdk-11.0.13-ojdkbuild-linux-x64.zip" ]; then rm -Rf jdk-11.0.13-ojdkbuild-linux-x64.zip; fi
-       - wget -nc https://github.com/ojdkbuild/contrib_jdk11u-ci/releases/download/jdk-11.0.13%2B8/jdk-11.0.13-ojdkbuild-linux-x64.zip
+       - if [ ! -f jdk-11.0.13-ojdkbuild-linux-x64.zip ]; then wget https://github.com/ojdkbuild/contrib_jdk11u-ci/releases/download/jdk-11.0.13%2B8/jdk-11.0.13-ojdkbuild-linux-x64.zip; fi
+       #- wget -nc https://github.com/ojdkbuild/contrib_jdk11u-ci/releases/download/jdk-11.0.13%2B8/jdk-11.0.13-ojdkbuild-linux-x64.zip
        - ./package.sh 4.14 other
        - cp traccar*.zip ../traccar-docker/
        - cd ../traccar-docker/
