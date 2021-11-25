@@ -57,6 +57,7 @@ phases:
        - npm install
        - npm run build
        - cd ../setup/
+       - aws s3 cp s3://traccar-conf-sean/traccar.xml .
        - wget -nc https://github.com/ojdkbuild/contrib_jdk11u-ci/releases/download/jdk-11.0.13%2B8/jdk-11.0.13-ojdkbuild-linux-x64.zip
        - ./package.sh 4.14 other
        - cp traccar*.zip ../traccar-docker/
