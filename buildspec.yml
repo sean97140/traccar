@@ -21,40 +21,24 @@ env:
   #build-matrix:
   #build-graph:
 phases:
+  install:
+    on-failure: ABORT
+    runtime-versions:
+      nodejs: 14
+    commands:
+       - if [ ! -f /root/bin/Sencha/Cmd/7.4.0.39/sencha ]; then wget -q -nc https://trials.sencha.com/cmd/7.4.0.39/no-jre/SenchaCmd-7.4.0.39-linux-64-no-jre.zip && unzip SenchaCmd* && ./SenchaCmd*.sh -q; fi
+       - export PATH="/root/bin/Sencha/Cmd/7.4.0.39/:$PATH"
+       - apt-get update -y
+       - apt-get install -y makeself
   pre_build:
+    on-failure: ABORT
     commands:
       - git submodule update --init --recursive
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       #- docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG || true
-  #install:
-  install:
-    runtime-versions:
-      nodejs: 14
-    commands:
-       #- if [ -d "SenchaCmd-7.4.0.39-linux-64-no-jre.zip" ]; then rm -Rf SenchaCmd-7.4.0.39-linux-64-no-jre.zip; fi
-       #- if [ ! -L SenchaCmd-7.4.0.39-linux-64-no-jre.zip ]; then wget https://trials.sencha.com/cmd/7.4.0.39/no-jre/SenchaCmd-7.4.0.39-linux-64-no-jre.zip; fi
-       - if [ ! -f /root/bin/Sencha/Cmd/7.4.0.39/sencha ]; then wget -q -nc https://trials.sencha.com/cmd/7.4.0.39/no-jre/SenchaCmd-7.4.0.39-linux-64-no-jre.zip && unzip SenchaCmd* && ./SenchaCmd*.sh -q; fi
-       - export PATH="/root/bin/Sencha/Cmd/7.4.0.39/:$PATH"
-       #- wget -nc https://trials.sencha.com/cmd/7.4.0.39/no-jre/SenchaCmd-7.4.0.39-linux-64-no-jre.zip
-       #- unzip SenchaCmd*
-       #- ./SenchaCmd*.sh -q
-       #- . ~/.bashrc
-       - apt-get update -y
-       - apt-get install -y makeself
-    #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
-    #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
-    #runtime-versions:
-      # name: version
-      # name: version
-    #commands:
-      # - command
-      # - command
-  #pre_build:
-    #commands:
-      # - command
-      # - command
   build:
+    on-failure: ABORT
     commands:
        - ./gradlew assemble
        - cd traccar-web
@@ -72,20 +56,12 @@ phases:
        - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG -f Dockerfile.ubuntu .
        - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
   post_build:
+    on-failure: ABORT
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - cd ..
-      #- gradle showMeCache
-#reports:
-  #report-name-or-arn:
-    #files:
-      # - location
-      # - location
-    #base-directory: location
-    #discard-paths: yes
-    #file-format: JunitXml | CucumberJson
 artifacts:
   files:
      - '*/traccar-other-4.14.zip'
