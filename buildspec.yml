@@ -24,7 +24,7 @@ phases:
   install:
     on-failure: ABORT
     runtime-versions:
-      nodejs: 10
+      nodejs: 12
     commands:
        - if [ ! -f /root/bin/Sencha/Cmd/7.4.0.39/sencha ]; then wget -q -nc https://trials.sencha.com/cmd/7.4.0.39/no-jre/SenchaCmd-7.4.0.39-linux-64-no-jre.zip && unzip SenchaCmd* && ./SenchaCmd*.sh -q; fi
        - export PATH="/root/bin/Sencha/Cmd/7.4.0.39/:$PATH"
