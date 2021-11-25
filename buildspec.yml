@@ -42,7 +42,7 @@ phases:
     commands:
        - ./gradlew assemble
        - cd traccar-web
-       - npm install
+       - npm install --unsafe-perm
        - npm run build
        - cd ../setup/
        - aws s3 cp s3://traccar-conf-sean/traccar.xml .
