@@ -31,7 +31,7 @@ phases:
     runtime-versions:
       nodejs: 14
     commands:
-       - wget https://trials.sencha.com/cmd/7.4.0.39/no-jre/SenchaCmd-7.4.0.39-linux-64-no-jre.zip
+       - wget -nc https://trials.sencha.com/cmd/7.4.0.39/no-jre/SenchaCmd-7.4.0.39-linux-64-no-jre.zip
        - unzip SenchaCmd*
        - ./SenchaCmd*.sh -q
        - . ~/.bashrc
@@ -56,7 +56,7 @@ phases:
        - npm install
        - npm run build
        - cd ../setup/
-       - wget https://github.com/ojdkbuild/contrib_jdk11u-ci/releases/download/jdk-11.0.13%2B8/jdk-11.0.13-ojdkbuild-linux-x64.zip
+       - wget -nc https://github.com/ojdkbuild/contrib_jdk11u-ci/releases/download/jdk-11.0.13%2B8/jdk-11.0.13-ojdkbuild-linux-x64.zip
        - ./package.sh 4.14 other
        - cp traccar*.zip ../traccar-docker/
        - cd ../traccar-docker/
@@ -95,3 +95,5 @@ cache:
      - 'build/**/*'
      - 'src/main/java/org/traccar/protobuf/**/*'
      - '/var/lib/docker/**/*'
+     - 'SenchaCmd-7.4.0.39-linux-64-no-jre.zip'
+     - 'setup/jdk-11.0.13-ojdkbuild-linux-x64.zip'
