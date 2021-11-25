@@ -93,4 +93,5 @@ cache:
      - 'nbactions.xml' 
      - '.gradle'
      - 'build/**/*'
-     - 'src/main/java/org/traccar/protobuf'
+     - 'src/main/java/org/traccar/protobuf/**/*'
+     - '/var/lib/docker/**/*'
