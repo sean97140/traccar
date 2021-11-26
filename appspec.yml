@@ -5,6 +5,6 @@ Resources:
      Properties:
        TaskDefinition: "<TASK_DEFINITION>"
        LoadBalancerInfo:
-         ContainerName: "YOUR_ECS_CLUSTER_NAME"
+         ContainerName: "TraccarBlueGreen"
          ContainerPort: 3000
 
