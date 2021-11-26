@@ -62,11 +62,15 @@ phases:
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - cd ..
+      - printf '{"ImageURI":"%s"}' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > imageDetail.json
 artifacts:
   secondary-artifacts:
     ZipFile:
       files:
         - '*/traccar-other-4.14.zip'
+    ImageDetails:
+      files:
+        - files: imageDetail.json
     # - location
   #name: $(date +%Y-%m-%d)
   #discard-paths: yes
