@@ -150,11 +150,3 @@
   "proxyConfiguration": null,
   "volumes": []
 }
-
-{
-  "containerDefinitions": [
-    {
-      "name": "TraccarBlueGreen",
-      "image": "",
-                       ]
-}
