@@ -1,0 +1,10 @@
+version: 0.0
+Resources:
+ - TargetService:
+     Type: AWS::ECS::Service
+     Properties:
+       TaskDefinition: "arn:aws:ecs:us-west-2:846341108880:cluster/TraccarBlueGreen"
+       LoadBalancerInfo:
+         ContainerName: "TraccarBlueGreen"
+         ContainerPort: 3000
+
