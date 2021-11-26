@@ -1,66 +1,69 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::846341108880:role/ECS-Console-V2-TaskDefinition-ECSTaskExecutionRole-1D29PT2QXMPVF",
+  "executionRoleArn": "arn:aws:iam::846341108880:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
-      "dnsSearchDomains": [],
-      "environmentFiles": [],
+      "dnsSearchDomains": null,
+      "environmentFiles": null,
       "logConfiguration": {
         "logDriver": "awslogs",
-        "secretOptions": [],
+        "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/TraccarBlueGreen",
+          "awslogs-group": "/ecs/TraccarBlueGreenNLB",
           "awslogs-region": "us-west-2",
-          "awslogs-create-group": "true",
           "awslogs-stream-prefix": "ecs"
         }
       },
-      "entryPoint": [],
+      "entryPoint": null,
       "portMappings": [
         {
           "hostPort": 8082,
           "protocol": "tcp",
           "containerPort": 8082
-        },
-        {
-          "hostPort": 3000,
-          "protocol": "tcp",
-          "containerPort": 3000
         }
       ],
-      "command": [],
+      "command": null,
       "linuxParameters": null,
-      "cpu": 0,
+      "cpu": 256,
       "environment": [],
       "resourceRequirements": null,
-      "ulimits": [],
-      "dnsServers": [],
+      "ulimits": null,
+      "dnsServers": null,
       "mountPoints": [],
       "workingDirectory": null,
-      "secrets": [],
-      "dockerSecurityOptions": [],
+      "secrets": null,
+      "dockerSecurityOptions": null,
       "memory": null,
       "memoryReservation": null,
       "volumesFrom": [],
-      "stopTimeout": null,
+      "stopTimeout": 120,
       "image": "<IMAGE1_NAME>",
-      "startTimeout": null,
+      "startTimeout": 120,
       "firelensConfiguration": null,
       "dependsOn": null,
       "disableNetworking": null,
       "interactive": null,
-      "healthCheck": null,
+      "healthCheck": {
+        "retries": 3,
+        "command": [
+          "CMD-SHELL",
+          "curl -f http://localhost:8082 || exit 1"
+        ],
+        "timeout": 5,
+        "interval": 240,
+        "startPeriod": 120
+      },
       "essential": true,
-      "links": [],
+      "links": null,
       "hostname": null,
-      "extraHosts": [],
+      "extraHosts": null,
       "pseudoTerminal": null,
       "user": null,
       "readonlyRootFilesystem": null,
-      "dockerLabels": {},
-      "systemControls": [],
+      "dockerLabels": null,
+      "systemControls": null,
       "privileged": null,
-      "name": "TraccarLatest"
+      "name": "TraccarLatestNLB"
     }
   ],
   "placementConstraints": [],
@@ -70,8 +73,8 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-west-2:846341108880:task-definition/TraccarBlueGreen:1",
-  "family": "TraccarBlueGreen",
+  "taskDefinitionArn": "arn:aws:ecs:us-west-2:846341108880:task-definition/TraccarBlueGreenNLB:1",
+  "family": "TraccarBlueGreenNLB",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -101,13 +104,19 @@
       "targetId": null,
       "targetType": null,
       "value": null,
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
     },
     {
       "targetId": null,
       "targetType": null,
       "value": null,
-      "name": "com.amazonaws.ecs.capability.task-iam-role"
+      "name": "ecs.capability.container-health-check"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.container-ordering"
     },
     {
       "targetId": null,
@@ -141,7 +150,7 @@
   "networkMode": "awsvpc",
   "runtimePlatform": {
     "operatingSystemFamily": "LINUX",
-    "cpuArchitecture": "X86_64"
+    "cpuArchitecture": null
   },
   "cpu": "256",
   "revision": 1,
