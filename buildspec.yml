@@ -70,7 +70,7 @@ artifacts:
         - '*/traccar-other-4.14.zip'
     ImageDetails:
       files:
-        - files: imageDetail.json
+        - files: 'imageDetail.json'
     # - location
   #name: $(date +%Y-%m-%d)
   #discard-paths: yes
