@@ -43,16 +43,7 @@
       "dependsOn": null,
       "disableNetworking": null,
       "interactive": null,
-      "healthCheck": {
-        "retries": 3,
-        "command": [
-          "CMD-SHELL",
-          "curl -f http://localhost:8082 || exit 1"
-        ],
-        "timeout": 5,
-        "interval": 240,
-        "startPeriod": 120
-      },
+      "healthCheck": null,
       "essential": true,
       "links": null,
       "hostname": null,
@@ -73,7 +64,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-west-2:846341108880:task-definition/TraccarBlueGreenNLB:1",
+  "taskDefinitionArn": "arn:aws:ecs:us-west-2:846341108880:task-definition/TraccarBlueGreenNLB:7",
   "family": "TraccarBlueGreenNLB",
   "requiresAttributes": [
     {
@@ -110,12 +101,6 @@
       "targetId": null,
       "targetType": null,
       "value": null,
-      "name": "ecs.capability.container-health-check"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
       "name": "ecs.capability.container-ordering"
     },
     {
@@ -135,12 +120,6 @@
       "targetType": null,
       "value": null,
       "name": "ecs.capability.task-eni"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
     }
   ],
   "pidMode": null,
@@ -153,7 +132,7 @@
     "cpuArchitecture": null
   },
   "cpu": "256",
-  "revision": 1,
+  "revision": 7,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
